@@ -15,13 +15,13 @@ part 'post_state.dart';
 @injectable
 class PostBloc extends Bloc<PostEvent, PostState> {
   PostBloc(this._postRepository) : super(PostState.initial()) {
-    on<GetPostData>(_getPostData);
+    on<GetPosts>(_getPostData);
     on<AddToFavorite>(_addToFavorite);
   }
   final IPostRepository _postRepository;
 
   FutureOr<void> _getPostData(
-    GetPostData event,
+    GetPosts event,
     Emitter<PostState> emit,
   ) async {
     emit(state.copyWith(isLoading: true));

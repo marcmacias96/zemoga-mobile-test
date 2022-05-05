@@ -18,38 +18,38 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$PostEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Post post) getPostData,
+    required TResult Function(Post post) getPosts,
     required TResult Function(int postId) addToFavorite,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Post post)? getPostData,
+    TResult Function(Post post)? getPosts,
     TResult Function(int postId)? addToFavorite,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Post post)? getPostData,
+    TResult Function(Post post)? getPosts,
     TResult Function(int postId)? addToFavorite,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GetPostData value) getPostData,
+    required TResult Function(GetPosts value) getPosts,
     required TResult Function(AddToFavorite value) addToFavorite,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GetPostData value)? getPostData,
+    TResult Function(GetPosts value)? getPosts,
     TResult Function(AddToFavorite value)? addToFavorite,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetPostData value)? getPostData,
+    TResult Function(GetPosts value)? getPosts,
     TResult Function(AddToFavorite value)? addToFavorite,
     required TResult orElse(),
   }) =>
@@ -72,28 +72,26 @@ class _$PostEventCopyWithImpl<$Res> implements $PostEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $GetPostDataCopyWith<$Res> {
-  factory $GetPostDataCopyWith(
-          GetPostData value, $Res Function(GetPostData) then) =
-      _$GetPostDataCopyWithImpl<$Res>;
+abstract class $GetPostsCopyWith<$Res> {
+  factory $GetPostsCopyWith(GetPosts value, $Res Function(GetPosts) then) =
+      _$GetPostsCopyWithImpl<$Res>;
   $Res call({Post post});
 }
 
 /// @nodoc
-class _$GetPostDataCopyWithImpl<$Res> extends _$PostEventCopyWithImpl<$Res>
-    implements $GetPostDataCopyWith<$Res> {
-  _$GetPostDataCopyWithImpl(
-      GetPostData _value, $Res Function(GetPostData) _then)
-      : super(_value, (v) => _then(v as GetPostData));
+class _$GetPostsCopyWithImpl<$Res> extends _$PostEventCopyWithImpl<$Res>
+    implements $GetPostsCopyWith<$Res> {
+  _$GetPostsCopyWithImpl(GetPosts _value, $Res Function(GetPosts) _then)
+      : super(_value, (v) => _then(v as GetPosts));
 
   @override
-  GetPostData get _value => super._value as GetPostData;
+  GetPosts get _value => super._value as GetPosts;
 
   @override
   $Res call({
     Object? post = freezed,
   }) {
-    return _then(GetPostData(
+    return _then(GetPosts(
       post == freezed
           ? _value.post
           : post // ignore: cast_nullable_to_non_nullable
@@ -104,22 +102,22 @@ class _$GetPostDataCopyWithImpl<$Res> extends _$PostEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetPostData implements GetPostData {
-  const _$GetPostData(this.post);
+class _$GetPosts implements GetPosts {
+  const _$GetPosts(this.post);
 
   @override
   final Post post;
 
   @override
   String toString() {
-    return 'PostEvent.getPostData(post: $post)';
+    return 'PostEvent.getPosts(post: $post)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is GetPostData &&
+            other is GetPosts &&
             const DeepCollectionEquality().equals(other.post, post));
   }
 
@@ -129,36 +127,36 @@ class _$GetPostData implements GetPostData {
 
   @JsonKey(ignore: true)
   @override
-  $GetPostDataCopyWith<GetPostData> get copyWith =>
-      _$GetPostDataCopyWithImpl<GetPostData>(this, _$identity);
+  $GetPostsCopyWith<GetPosts> get copyWith =>
+      _$GetPostsCopyWithImpl<GetPosts>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Post post) getPostData,
+    required TResult Function(Post post) getPosts,
     required TResult Function(int postId) addToFavorite,
   }) {
-    return getPostData(post);
+    return getPosts(post);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Post post)? getPostData,
+    TResult Function(Post post)? getPosts,
     TResult Function(int postId)? addToFavorite,
   }) {
-    return getPostData?.call(post);
+    return getPosts?.call(post);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Post post)? getPostData,
+    TResult Function(Post post)? getPosts,
     TResult Function(int postId)? addToFavorite,
     required TResult orElse(),
   }) {
-    if (getPostData != null) {
-      return getPostData(post);
+    if (getPosts != null) {
+      return getPosts(post);
     }
     return orElse();
   }
@@ -166,41 +164,41 @@ class _$GetPostData implements GetPostData {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GetPostData value) getPostData,
+    required TResult Function(GetPosts value) getPosts,
     required TResult Function(AddToFavorite value) addToFavorite,
   }) {
-    return getPostData(this);
+    return getPosts(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GetPostData value)? getPostData,
+    TResult Function(GetPosts value)? getPosts,
     TResult Function(AddToFavorite value)? addToFavorite,
   }) {
-    return getPostData?.call(this);
+    return getPosts?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetPostData value)? getPostData,
+    TResult Function(GetPosts value)? getPosts,
     TResult Function(AddToFavorite value)? addToFavorite,
     required TResult orElse(),
   }) {
-    if (getPostData != null) {
-      return getPostData(this);
+    if (getPosts != null) {
+      return getPosts(this);
     }
     return orElse();
   }
 }
 
-abstract class GetPostData implements PostEvent {
-  const factory GetPostData(final Post post) = _$GetPostData;
+abstract class GetPosts implements PostEvent {
+  const factory GetPosts(final Post post) = _$GetPosts;
 
   Post get post => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GetPostDataCopyWith<GetPostData> get copyWith =>
+  $GetPostsCopyWith<GetPosts> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -268,7 +266,7 @@ class _$AddToFavorite implements AddToFavorite {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Post post) getPostData,
+    required TResult Function(Post post) getPosts,
     required TResult Function(int postId) addToFavorite,
   }) {
     return addToFavorite(postId);
@@ -277,7 +275,7 @@ class _$AddToFavorite implements AddToFavorite {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Post post)? getPostData,
+    TResult Function(Post post)? getPosts,
     TResult Function(int postId)? addToFavorite,
   }) {
     return addToFavorite?.call(postId);
@@ -286,7 +284,7 @@ class _$AddToFavorite implements AddToFavorite {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Post post)? getPostData,
+    TResult Function(Post post)? getPosts,
     TResult Function(int postId)? addToFavorite,
     required TResult orElse(),
   }) {
@@ -299,7 +297,7 @@ class _$AddToFavorite implements AddToFavorite {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GetPostData value) getPostData,
+    required TResult Function(GetPosts value) getPosts,
     required TResult Function(AddToFavorite value) addToFavorite,
   }) {
     return addToFavorite(this);
@@ -308,7 +306,7 @@ class _$AddToFavorite implements AddToFavorite {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GetPostData value)? getPostData,
+    TResult Function(GetPosts value)? getPosts,
     TResult Function(AddToFavorite value)? addToFavorite,
   }) {
     return addToFavorite?.call(this);
@@ -317,7 +315,7 @@ class _$AddToFavorite implements AddToFavorite {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetPostData value)? getPostData,
+    TResult Function(GetPosts value)? getPosts,
     TResult Function(AddToFavorite value)? addToFavorite,
     required TResult orElse(),
   }) {

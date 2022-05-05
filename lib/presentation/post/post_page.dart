@@ -22,7 +22,7 @@ class PostPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => getIt<PostBloc>()
         ..add(
-          PostEvent.getPostData(post),
+          PostEvent.getPosts(post),
         ),
       child: BlocBuilder<PostBloc, PostState>(
         builder: (context, state) {

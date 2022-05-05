@@ -20,7 +20,7 @@ mixin _$ListPostsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(List<Post> posts) loaded,
+    required TResult Function(List<Post> posts, List<Post> favorites) loaded,
     required TResult Function() loadError,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$ListPostsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(List<Post> posts)? loaded,
+    TResult Function(List<Post> posts, List<Post> favorites)? loaded,
     TResult Function()? loadError,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$ListPostsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(List<Post> posts)? loaded,
+    TResult Function(List<Post> posts, List<Post> favorites)? loaded,
     TResult Function()? loadError,
     required TResult orElse(),
   }) =>
@@ -125,7 +125,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(List<Post> posts) loaded,
+    required TResult Function(List<Post> posts, List<Post> favorites) loaded,
     required TResult Function() loadError,
   }) {
     return initial();
@@ -136,7 +136,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(List<Post> posts)? loaded,
+    TResult Function(List<Post> posts, List<Post> favorites)? loaded,
     TResult Function()? loadError,
   }) {
     return initial?.call();
@@ -147,7 +147,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(List<Post> posts)? loaded,
+    TResult Function(List<Post> posts, List<Post> favorites)? loaded,
     TResult Function()? loadError,
     required TResult orElse(),
   }) {
@@ -242,7 +242,7 @@ class _$_LoadInProgress implements _LoadInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(List<Post> posts) loaded,
+    required TResult Function(List<Post> posts, List<Post> favorites) loaded,
     required TResult Function() loadError,
   }) {
     return loadInProgress();
@@ -253,7 +253,7 @@ class _$_LoadInProgress implements _LoadInProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(List<Post> posts)? loaded,
+    TResult Function(List<Post> posts, List<Post> favorites)? loaded,
     TResult Function()? loadError,
   }) {
     return loadInProgress?.call();
@@ -264,7 +264,7 @@ class _$_LoadInProgress implements _LoadInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(List<Post> posts)? loaded,
+    TResult Function(List<Post> posts, List<Post> favorites)? loaded,
     TResult Function()? loadError,
     required TResult orElse(),
   }) {
@@ -320,7 +320,7 @@ abstract class _LoadInProgress implements ListPostsState {
 abstract class _$LoadedCopyWith<$Res> {
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) then) =
       __$LoadedCopyWithImpl<$Res>;
-  $Res call({List<Post> posts});
+  $Res call({List<Post> posts, List<Post> favorites});
 }
 
 /// @nodoc
@@ -335,11 +335,16 @@ class __$LoadedCopyWithImpl<$Res> extends _$ListPostsStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? posts = freezed,
+    Object? favorites = freezed,
   }) {
     return _then(_Loaded(
       posts == freezed
           ? _value.posts
           : posts // ignore: cast_nullable_to_non_nullable
+              as List<Post>,
+      favorites == freezed
+          ? _value.favorites
+          : favorites // ignore: cast_nullable_to_non_nullable
               as List<Post>,
     ));
   }
@@ -348,7 +353,9 @@ class __$LoadedCopyWithImpl<$Res> extends _$ListPostsStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Loaded implements _Loaded {
-  const _$_Loaded(final List<Post> posts) : _posts = posts;
+  const _$_Loaded(final List<Post> posts, final List<Post> favorites)
+      : _posts = posts,
+        _favorites = favorites;
 
   final List<Post> _posts;
   @override
@@ -357,9 +364,16 @@ class _$_Loaded implements _Loaded {
     return EqualUnmodifiableListView(_posts);
   }
 
+  final List<Post> _favorites;
+  @override
+  List<Post> get favorites {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_favorites);
+  }
+
   @override
   String toString() {
-    return 'ListPostsState.loaded(posts: $posts)';
+    return 'ListPostsState.loaded(posts: $posts, favorites: $favorites)';
   }
 
   @override
@@ -367,12 +381,15 @@ class _$_Loaded implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Loaded &&
-            const DeepCollectionEquality().equals(other.posts, posts));
+            const DeepCollectionEquality().equals(other.posts, posts) &&
+            const DeepCollectionEquality().equals(other.favorites, favorites));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(posts));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(posts),
+      const DeepCollectionEquality().hash(favorites));
 
   @JsonKey(ignore: true)
   @override
@@ -384,10 +401,10 @@ class _$_Loaded implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(List<Post> posts) loaded,
+    required TResult Function(List<Post> posts, List<Post> favorites) loaded,
     required TResult Function() loadError,
   }) {
-    return loaded(posts);
+    return loaded(posts, favorites);
   }
 
   @override
@@ -395,10 +412,10 @@ class _$_Loaded implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(List<Post> posts)? loaded,
+    TResult Function(List<Post> posts, List<Post> favorites)? loaded,
     TResult Function()? loadError,
   }) {
-    return loaded?.call(posts);
+    return loaded?.call(posts, favorites);
   }
 
   @override
@@ -406,12 +423,12 @@ class _$_Loaded implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(List<Post> posts)? loaded,
+    TResult Function(List<Post> posts, List<Post> favorites)? loaded,
     TResult Function()? loadError,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(posts);
+      return loaded(posts, favorites);
     }
     return orElse();
   }
@@ -455,9 +472,11 @@ class _$_Loaded implements _Loaded {
 }
 
 abstract class _Loaded implements ListPostsState {
-  const factory _Loaded(final List<Post> posts) = _$_Loaded;
+  const factory _Loaded(final List<Post> posts, final List<Post> favorites) =
+      _$_Loaded;
 
   List<Post> get posts => throw _privateConstructorUsedError;
+  List<Post> get favorites => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$LoadedCopyWith<_Loaded> get copyWith => throw _privateConstructorUsedError;
 }
@@ -503,7 +522,7 @@ class _$_LoadError implements _LoadError {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(List<Post> posts) loaded,
+    required TResult Function(List<Post> posts, List<Post> favorites) loaded,
     required TResult Function() loadError,
   }) {
     return loadError();
@@ -514,7 +533,7 @@ class _$_LoadError implements _LoadError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(List<Post> posts)? loaded,
+    TResult Function(List<Post> posts, List<Post> favorites)? loaded,
     TResult Function()? loadError,
   }) {
     return loadError?.call();
@@ -525,7 +544,7 @@ class _$_LoadError implements _LoadError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(List<Post> posts)? loaded,
+    TResult Function(List<Post> posts, List<Post> favorites)? loaded,
     TResult Function()? loadError,
     required TResult orElse(),
   }) {

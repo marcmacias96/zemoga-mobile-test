@@ -4,9 +4,15 @@ import 'package:zemoga_mobile_test/app/inyection.dart';
 import 'package:zemoga_mobile_test/logic/list_posts/list_posts_bloc.dart';
 import 'package:zemoga_mobile_test/presentation/routes/route_name.dart';
 
-class PostsPage extends StatelessWidget {
+class PostsPage extends StatefulWidget {
   const PostsPage({Key? key}) : super(key: key);
 
+  @override
+  State<PostsPage> createState() => _PostsPageState();
+}
+
+class _PostsPageState extends State<PostsPage> {
+  int position = 0;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -17,7 +23,6 @@ class PostsPage extends StatelessWidget {
             const ListPostsEvent.getPosts(),
           ),
         child: BlocBuilder<ListPostsBloc, ListPostsState>(
-          buildWhen: (previous, current) => previous != current,
           builder: (context, state) {
             return Scaffold(
               floatingActionButton: FloatingActionButton(
@@ -34,15 +39,9 @@ class PostsPage extends StatelessWidget {
                 title: const Text('Posts'),
                 bottom: TabBar(
                   onTap: (index) {
-                    if (index == 0) {
-                      context
-                          .read<ListPostsBloc>()
-                          .add(const ListPostsEvent.getPosts());
-                    } else {
-                      context
-                          .read<ListPostsBloc>()
-                          .add(const ListPostsEvent.getFavoritePosts());
-                    }
+                    setState(() {
+                      position = index;
+                    });
                   },
                   tabs: const [
                     Tab(
@@ -65,15 +64,43 @@ class PostsPage extends StatelessWidget {
                 ),
                 loaded: (loaded) => loaded.posts.isNotEmpty
                     ? ListView.separated(
-                        itemCount: loaded.posts.length,
+                        itemCount: position == 0
+                            ? loaded.posts.length
+                            : loaded.favorites.length,
                         itemBuilder: (context, index) {
                           return ListTile(
-                            onTap: () => Navigator.pushNamed(
-                              context,
-                              RouteName.postDetails,
-                              arguments: loaded.posts[index],
+                            onTap: () async {
+                              await Navigator.pushNamed(
+                                context,
+                                RouteName.postDetails,
+                                arguments: position == 0
+                                    ? loaded.posts[index]
+                                    : loaded.favorites[index],
+                              );
+                              await Future.delayed(
+                                const Duration(milliseconds: 200),
+                              );
+                              if (mounted) {
+                                context
+                                    .read<ListPostsBloc>()
+                                    .add(const ListPostsEvent.getPosts());
+                              }
+                            },
+                            title: Text(
+                              position == 0
+                                  ? loaded.posts[index].title
+                                  : loaded.favorites[index].title,
                             ),
-                            title: Text(loaded.posts[index].title),
+                            trailing: Visibility(
+                              visible: loaded.favorites.contains(
+                                    loaded.posts[index],
+                                  ) &&
+                                  position == 0,
+                              child: const Icon(
+                                Icons.star,
+                                color: Colors.amber,
+                              ),
+                            ),
                           );
                         },
                         separatorBuilder: (context, index) {
@@ -81,9 +108,11 @@ class PostsPage extends StatelessWidget {
                         },
                       )
                     : const Center(
-                        child: const Text('No posts'),
+                        child: Text('No posts'),
                       ),
-                loadError: (error) => Container(),
+                loadError: (_) => const Center(
+                  child: Text('Error'),
+                ),
               ),
             );
           },

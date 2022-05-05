@@ -14,38 +14,25 @@ part 'list_posts_bloc.freezed.dart';
 @injectable
 class ListPostsBloc extends Bloc<ListPostsEvent, ListPostsState> {
   ListPostsBloc(this._postRepository) : super(const ListPostsState.initial()) {
-    on<GetPosts>(_getPostData);
-    on<GetFavoritePosts>(_getFavoritePosts);
+    on<GetPosts>(_getPosts);
     on<RemoveAllFavorite>(_removeAllFavorite);
   }
 
   final IPostRepository _postRepository;
 
-  FutureOr<void> _getPostData(
+  FutureOr<void> _getPosts(
     GetPosts event,
     Emitter<ListPostsState> emit,
   ) async {
     emit(const ListPostsState.loadInProgress());
     final failureOrPosts = await _postRepository.getPosts();
-    emit(
-      failureOrPosts.fold(
-        (failure) => const ListPostsState.loadError(),
-        ListPostsState.loaded,
-      ),
-    );
-  }
-
-  FutureOr<void> _getFavoritePosts(
-    GetFavoritePosts event,
-    Emitter<ListPostsState> emit,
-  ) async {
-    emit(const ListPostsState.loadInProgress());
     final favorites = await _postRepository.getFavoritePosts();
-    final failureOrPosts = await _postRepository.getPosts();
+
     emit(
       failureOrPosts.fold(
         (failure) => const ListPostsState.loadError(),
         (posts) => ListPostsState.loaded(
+          posts,
           posts.where((post) => favorites.contains(post.id)).toList(),
         ),
       ),
@@ -57,6 +44,6 @@ class ListPostsBloc extends Bloc<ListPostsEvent, ListPostsState> {
     Emitter<ListPostsState> emit,
   ) async {
     await _postRepository.deleteAllFavoritePosts();
-    add(const GetFavoritePosts());
+    add(const GetPosts());
   }
 }

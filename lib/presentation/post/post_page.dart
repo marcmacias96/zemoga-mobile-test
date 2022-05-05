@@ -1,12 +1,13 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zemoga_mobile_test/app/inyection.dart';
 import 'package:zemoga_mobile_test/domain/comment/comment.dart';
 import 'package:zemoga_mobile_test/domain/post/post.dart';
+import 'package:zemoga_mobile_test/domain/user/user.dart';
 import 'package:zemoga_mobile_test/logic/post/post_bloc.dart';
 import 'package:zemoga_mobile_test/presentation/routes/route_name.dart';
-
-import '../../domain/user/user.dart';
 
 class PostPage extends StatelessWidget {
   const PostPage({
@@ -18,18 +19,29 @@ class PostPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Posts'),
-      ),
-      body: BlocProvider(
-        create: (context) => getIt<PostBloc>()
-          ..add(
-            PostEvent.getPostData(post),
-          ),
-        child: BlocBuilder<PostBloc, PostState>(
-          builder: (context, state) {
-            return Padding(
+    return BlocProvider(
+      create: (context) => getIt<PostBloc>()
+        ..add(
+          PostEvent.getPostData(post),
+        ),
+      child: BlocBuilder<PostBloc, PostState>(
+        builder: (context, state) {
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text('Post'),
+              centerTitle: false,
+              actions: [
+                IconButton(
+                  icon: Icon(
+                    state.isFavorite ? Icons.star : Icons.star_border,
+                  ),
+                  onPressed: () => context
+                      .read<PostBloc>()
+                      .add(PostEvent.addToFavorite(post.id)),
+                ),
+              ],
+            ),
+            body: Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,9 +61,9 @@ class PostPage extends StatelessWidget {
                   ),
                 ],
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

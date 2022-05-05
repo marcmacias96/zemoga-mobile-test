@@ -16,6 +16,7 @@ part 'post_state.dart';
 class PostBloc extends Bloc<PostEvent, PostState> {
   PostBloc(this._postRepository) : super(PostState.initial()) {
     on<GetPostData>(_getPostData);
+    on<AddToFavorite>(_addToFavorite);
   }
   final IPostRepository _postRepository;
 
@@ -28,6 +29,8 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     final failureOrComments =
         await _postRepository.getCommentsByPostId(event.post.id);
 
+    final favoritePosts = await _postRepository.getFavoritePosts();
+
     final user = failureOrUser.fold((_) => null, (user) => user);
 
     final comments =
@@ -39,7 +42,21 @@ class PostBloc extends Bloc<PostEvent, PostState> {
         post: event.post,
         user: user,
         comments: comments,
+        isFavorite: favoritePosts.contains(event.post.id),
       ),
     );
+  }
+
+  FutureOr<void> _addToFavorite(
+    AddToFavorite event,
+    Emitter<PostState> emit,
+  ) async {
+    if (state.isFavorite) {
+      await _postRepository.removePostToFavorite(event.postId);
+      emit(state.copyWith(isFavorite: false));
+    } else {
+      await _postRepository.addPostToFavorite(event.postId);
+      emit(state.copyWith(isFavorite: true));
+    }
   }
 }

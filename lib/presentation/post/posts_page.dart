@@ -9,43 +9,82 @@ class PostsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Posts'),
-      ),
-      body: BlocProvider(
+    return DefaultTabController(
+      length: 2,
+      child: BlocProvider(
         create: (context) => getIt<ListPostsBloc>()
           ..add(
             const ListPostsEvent.getPosts(),
           ),
         child: BlocBuilder<ListPostsBloc, ListPostsState>(
+          buildWhen: (previous, current) => previous != current,
           builder: (context, state) {
-            return state.map(
-              initial: (_) => Container(),
-              loadInProgress: (_) => const Center(
-                child: SizedBox(
-                  height: 50,
-                  width: 50,
-                  child: CircularProgressIndicator.adaptive(),
+            return Scaffold(
+              floatingActionButton: FloatingActionButton(
+                backgroundColor: Colors.white,
+                onPressed: () => context
+                    .read<ListPostsBloc>()
+                    .add(const ListPostsEvent.removeAllFavorite()),
+                child: const Icon(
+                  Icons.delete,
+                  color: Colors.red,
                 ),
               ),
-              loaded: (loaded) => ListView.separated(
-                itemCount: 20,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    onTap: () => Navigator.pushNamed(
-                      context,
-                      RouteName.postDetails,
-                      arguments: loaded.posts[index],
+              appBar: AppBar(
+                title: const Text('Posts'),
+                bottom: TabBar(
+                  onTap: (index) {
+                    if (index == 0) {
+                      context
+                          .read<ListPostsBloc>()
+                          .add(const ListPostsEvent.getPosts());
+                    } else {
+                      context
+                          .read<ListPostsBloc>()
+                          .add(const ListPostsEvent.getFavoritePosts());
+                    }
+                  },
+                  tabs: const [
+                    Tab(
+                      icon: Icon(Icons.list),
                     ),
-                    title: Text(loaded.posts[index].title),
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return const Divider();
-                },
+                    Tab(
+                      icon: Icon(Icons.favorite),
+                    ),
+                  ],
+                ),
               ),
-              loadError: (error) => Container(),
+              body: state.map(
+                initial: (_) => Container(),
+                loadInProgress: (_) => const Center(
+                  child: SizedBox(
+                    height: 50,
+                    width: 50,
+                    child: CircularProgressIndicator.adaptive(),
+                  ),
+                ),
+                loaded: (loaded) => loaded.posts.isNotEmpty
+                    ? ListView.separated(
+                        itemCount: loaded.posts.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            onTap: () => Navigator.pushNamed(
+                              context,
+                              RouteName.postDetails,
+                              arguments: loaded.posts[index],
+                            ),
+                            title: Text(loaded.posts[index].title),
+                          );
+                        },
+                        separatorBuilder: (context, index) {
+                          return const Divider();
+                        },
+                      )
+                    : const Center(
+                        child: const Text('No posts'),
+                      ),
+                loadError: (error) => Container(),
+              ),
             );
           },
         ),

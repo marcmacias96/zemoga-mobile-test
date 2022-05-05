@@ -582,32 +582,44 @@ mixin _$ListPostsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getPosts,
+    required TResult Function() getFavoritePosts,
+    required TResult Function() removeAllFavorite,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? getPosts,
+    TResult Function()? getFavoritePosts,
+    TResult Function()? removeAllFavorite,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getPosts,
+    TResult Function()? getFavoritePosts,
+    TResult Function()? removeAllFavorite,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetPosts value) getPosts,
+    required TResult Function(GetFavoritePosts value) getFavoritePosts,
+    required TResult Function(RemoveAllFavorite value) removeAllFavorite,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(GetPosts value)? getPosts,
+    TResult Function(GetFavoritePosts value)? getFavoritePosts,
+    TResult Function(RemoveAllFavorite value)? removeAllFavorite,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetPosts value)? getPosts,
+    TResult Function(GetFavoritePosts value)? getFavoritePosts,
+    TResult Function(RemoveAllFavorite value)? removeAllFavorite,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -669,6 +681,8 @@ class _$GetPosts implements GetPosts {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getPosts,
+    required TResult Function() getFavoritePosts,
+    required TResult Function() removeAllFavorite,
   }) {
     return getPosts();
   }
@@ -677,6 +691,8 @@ class _$GetPosts implements GetPosts {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? getPosts,
+    TResult Function()? getFavoritePosts,
+    TResult Function()? removeAllFavorite,
   }) {
     return getPosts?.call();
   }
@@ -685,6 +701,8 @@ class _$GetPosts implements GetPosts {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getPosts,
+    TResult Function()? getFavoritePosts,
+    TResult Function()? removeAllFavorite,
     required TResult orElse(),
   }) {
     if (getPosts != null) {
@@ -697,6 +715,8 @@ class _$GetPosts implements GetPosts {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetPosts value) getPosts,
+    required TResult Function(GetFavoritePosts value) getFavoritePosts,
+    required TResult Function(RemoveAllFavorite value) removeAllFavorite,
   }) {
     return getPosts(this);
   }
@@ -705,6 +725,8 @@ class _$GetPosts implements GetPosts {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(GetPosts value)? getPosts,
+    TResult Function(GetFavoritePosts value)? getFavoritePosts,
+    TResult Function(RemoveAllFavorite value)? removeAllFavorite,
   }) {
     return getPosts?.call(this);
   }
@@ -713,6 +735,8 @@ class _$GetPosts implements GetPosts {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetPosts value)? getPosts,
+    TResult Function(GetFavoritePosts value)? getFavoritePosts,
+    TResult Function(RemoveAllFavorite value)? removeAllFavorite,
     required TResult orElse(),
   }) {
     if (getPosts != null) {
@@ -724,4 +748,226 @@ class _$GetPosts implements GetPosts {
 
 abstract class GetPosts implements ListPostsEvent {
   const factory GetPosts() = _$GetPosts;
+}
+
+/// @nodoc
+abstract class $GetFavoritePostsCopyWith<$Res> {
+  factory $GetFavoritePostsCopyWith(
+          GetFavoritePosts value, $Res Function(GetFavoritePosts) then) =
+      _$GetFavoritePostsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$GetFavoritePostsCopyWithImpl<$Res>
+    extends _$ListPostsEventCopyWithImpl<$Res>
+    implements $GetFavoritePostsCopyWith<$Res> {
+  _$GetFavoritePostsCopyWithImpl(
+      GetFavoritePosts _value, $Res Function(GetFavoritePosts) _then)
+      : super(_value, (v) => _then(v as GetFavoritePosts));
+
+  @override
+  GetFavoritePosts get _value => super._value as GetFavoritePosts;
+}
+
+/// @nodoc
+
+class _$GetFavoritePosts implements GetFavoritePosts {
+  const _$GetFavoritePosts();
+
+  @override
+  String toString() {
+    return 'ListPostsEvent.getFavoritePosts()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is GetFavoritePosts);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getPosts,
+    required TResult Function() getFavoritePosts,
+    required TResult Function() removeAllFavorite,
+  }) {
+    return getFavoritePosts();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? getPosts,
+    TResult Function()? getFavoritePosts,
+    TResult Function()? removeAllFavorite,
+  }) {
+    return getFavoritePosts?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getPosts,
+    TResult Function()? getFavoritePosts,
+    TResult Function()? removeAllFavorite,
+    required TResult orElse(),
+  }) {
+    if (getFavoritePosts != null) {
+      return getFavoritePosts();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetPosts value) getPosts,
+    required TResult Function(GetFavoritePosts value) getFavoritePosts,
+    required TResult Function(RemoveAllFavorite value) removeAllFavorite,
+  }) {
+    return getFavoritePosts(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GetPosts value)? getPosts,
+    TResult Function(GetFavoritePosts value)? getFavoritePosts,
+    TResult Function(RemoveAllFavorite value)? removeAllFavorite,
+  }) {
+    return getFavoritePosts?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetPosts value)? getPosts,
+    TResult Function(GetFavoritePosts value)? getFavoritePosts,
+    TResult Function(RemoveAllFavorite value)? removeAllFavorite,
+    required TResult orElse(),
+  }) {
+    if (getFavoritePosts != null) {
+      return getFavoritePosts(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetFavoritePosts implements ListPostsEvent {
+  const factory GetFavoritePosts() = _$GetFavoritePosts;
+}
+
+/// @nodoc
+abstract class $RemoveAllFavoriteCopyWith<$Res> {
+  factory $RemoveAllFavoriteCopyWith(
+          RemoveAllFavorite value, $Res Function(RemoveAllFavorite) then) =
+      _$RemoveAllFavoriteCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$RemoveAllFavoriteCopyWithImpl<$Res>
+    extends _$ListPostsEventCopyWithImpl<$Res>
+    implements $RemoveAllFavoriteCopyWith<$Res> {
+  _$RemoveAllFavoriteCopyWithImpl(
+      RemoveAllFavorite _value, $Res Function(RemoveAllFavorite) _then)
+      : super(_value, (v) => _then(v as RemoveAllFavorite));
+
+  @override
+  RemoveAllFavorite get _value => super._value as RemoveAllFavorite;
+}
+
+/// @nodoc
+
+class _$RemoveAllFavorite implements RemoveAllFavorite {
+  const _$RemoveAllFavorite();
+
+  @override
+  String toString() {
+    return 'ListPostsEvent.removeAllFavorite()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is RemoveAllFavorite);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getPosts,
+    required TResult Function() getFavoritePosts,
+    required TResult Function() removeAllFavorite,
+  }) {
+    return removeAllFavorite();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? getPosts,
+    TResult Function()? getFavoritePosts,
+    TResult Function()? removeAllFavorite,
+  }) {
+    return removeAllFavorite?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getPosts,
+    TResult Function()? getFavoritePosts,
+    TResult Function()? removeAllFavorite,
+    required TResult orElse(),
+  }) {
+    if (removeAllFavorite != null) {
+      return removeAllFavorite();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetPosts value) getPosts,
+    required TResult Function(GetFavoritePosts value) getFavoritePosts,
+    required TResult Function(RemoveAllFavorite value) removeAllFavorite,
+  }) {
+    return removeAllFavorite(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GetPosts value)? getPosts,
+    TResult Function(GetFavoritePosts value)? getFavoritePosts,
+    TResult Function(RemoveAllFavorite value)? removeAllFavorite,
+  }) {
+    return removeAllFavorite?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetPosts value)? getPosts,
+    TResult Function(GetFavoritePosts value)? getFavoritePosts,
+    TResult Function(RemoveAllFavorite value)? removeAllFavorite,
+    required TResult orElse(),
+  }) {
+    if (removeAllFavorite != null) {
+      return removeAllFavorite(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RemoveAllFavorite implements ListPostsEvent {
+  const factory RemoveAllFavorite() = _$RemoveAllFavorite;
 }

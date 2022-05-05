@@ -11,5 +11,7 @@ abstract class IPostRepository {
   Future<Either<Failure, List<Comment>>> getCommentsByPostId(int postId);
   Future<List<int>> getFavoritePosts();
   Future<Unit> addPostToFavorite(int postId);
+  Future<Unit> removePostToFavorite(int postId);
   Future<Either<Failure, User>> getUser(int id);
+  Future<Unit> deleteAllFavoritePosts();
 }

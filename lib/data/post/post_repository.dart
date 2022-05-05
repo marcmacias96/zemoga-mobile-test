@@ -91,6 +91,22 @@ class PostRepository implements IPostRepository {
       return left(const Failure.serverError());
     }
   }
+
+  @override
+  Future<Unit> removePostToFavorite(int postId) async {
+    final prefs = await SharedPreferences.getInstance();
+    final favorites = prefs.getStringList(localKey) ?? [];
+    favorites.remove(postId.toString());
+    await prefs.setStringList(localKey, favorites);
+    return unit;
+  }
+
+  @override
+  Future<Unit> deleteAllFavoritePosts() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList(localKey, []);
+    return unit;
+  }
 }
 
 const localKey = 'favorite_posts';

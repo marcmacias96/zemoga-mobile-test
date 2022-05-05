@@ -7,9 +7,11 @@ class PostState with _$PostState {
     required bool isLoading,
     User? user,
     List<Comment>? comments,
+    required bool isFavorite,
   }) = _Initial;
 
   factory PostState.initial() => const PostState(
         isLoading: true,
+        isFavorite: false,
       );
 }

@@ -1,6 +1,12 @@
 # Zemoga Mobile Test
 
-![coverage][coverage_badge]
+| Posts | Favorites | Post |
+|--|--|--|
+| ![image](https://user-images.githubusercontent.com/20014013/166889527-c448f780-c18e-48b5-96ef-5b3db6cb3426.png) | ![image](https://user-images.githubusercontent.com/20014013/166889567-b8da247a-ef3a-40f9-a85a-f0390e0f0d90.png)| ![image](https://user-images.githubusercontent.com/20014013/166889321-76e1d6c4-3233-48c7-a402-431d3b2d90a5.png) |
+
+
+
+
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 [![License: MIT][license_badge]][license_link]
 

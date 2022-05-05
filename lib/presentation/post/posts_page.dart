@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zemoga_mobile_test/app/inyection.dart';
+import 'package:zemoga_mobile_test/app/l10n/l10n.dart';
+import 'package:zemoga_mobile_test/domain/post/post.dart';
 import 'package:zemoga_mobile_test/logic/list_posts/list_posts_bloc.dart';
 import 'package:zemoga_mobile_test/presentation/routes/route_name.dart';
 
@@ -15,6 +17,7 @@ class _PostsPageState extends State<PostsPage> {
   int position = 0;
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context);
     return DefaultTabController(
       length: 2,
       child: BlocProvider(
@@ -36,7 +39,7 @@ class _PostsPageState extends State<PostsPage> {
                 ),
               ),
               appBar: AppBar(
-                title: const Text('Posts'),
+                title: Text(localizations.postsTitle),
                 bottom: TabBar(
                   onTap: (index) {
                     setState(() {
@@ -62,7 +65,9 @@ class _PostsPageState extends State<PostsPage> {
                     child: CircularProgressIndicator.adaptive(),
                   ),
                 ),
-                loaded: (loaded) => loaded.posts.isNotEmpty
+                loaded: (loaded) => getIsEmpty(
+                  position == 0 ? loaded.posts : loaded.favorites,
+                )
                     ? ListView.separated(
                         itemCount: position == 0
                             ? loaded.posts.length
@@ -119,5 +124,9 @@ class _PostsPageState extends State<PostsPage> {
         ),
       ),
     );
+  }
+
+  bool getIsEmpty(List<Post> posts) {
+    return posts.isNotEmpty;
   }
 }

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zemoga_mobile_test/app/inyection.dart';
+import 'package:zemoga_mobile_test/app/l10n/l10n.dart';
 import 'package:zemoga_mobile_test/domain/comment/comment.dart';
 import 'package:zemoga_mobile_test/domain/post/post.dart';
 import 'package:zemoga_mobile_test/domain/user/user.dart';
@@ -19,6 +20,7 @@ class PostPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context);
     return BlocProvider(
       create: (context) => getIt<PostBloc>()
         ..add(
@@ -28,7 +30,7 @@ class PostPage extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title: const Text('Post'),
+              title: Text(localizations.postTitle),
               centerTitle: false,
               actions: [
                 IconButton(
@@ -46,13 +48,14 @@ class PostPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Title(title: 'Description'),
+                  Title(title: localizations.postSubTitle1),
                   const SizedBox(height: 16),
                   Text(post.body),
                   const SizedBox(height: 16),
+                  Title(title: localizations.postSubTitle2),
                   UserLoader(user: state.user),
                   const SizedBox(height: 16),
-                  const Title(title: 'Comments'),
+                  Title(title: localizations.postSubTitle3),
                   const SizedBox(height: 16),
                   Expanded(
                     child: CommentsLoader(
@@ -119,7 +122,6 @@ class UserLoader extends StatelessWidget {
         : Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Title(title: 'User'),
               const SizedBox(height: 16),
               Text(user!.name),
               Text(user!.email),

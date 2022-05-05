@@ -8,21 +8,33 @@ environment:
 
 dependencies:
   bloc: ^8.0.2
+  dartz: ^0.10.1
+  dio: ^4.0.6
   equatable: ^2.0.3
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
   flutter_localizations:
     sdk: flutter
+  freezed: ^2.0.2
   get_it: ^7.2.0
+  hive: ^2.1.0
+  injectable: ^1.5.3
+  injectable_generator: ^1.5.3
   intl: ^0.17.0
+  logger: ^1.1.0
+  modal_bottom_sheet: ^2.0.1
+  path_provider: ^2.0.9
+  pretty_dio_logger: ^1.1.1
+  shared_preferences: ^2.0.13
+ 
 
 dev_dependencies:
-  bloc_test: ^9.0.2
+  build_runner: ^2.1.10
   flutter_test:
     sdk: flutter
-  mocktail: ^0.2.0
   very_good_analysis: ^2.4.0
+
 
 flutter:
   uses-material-design: true

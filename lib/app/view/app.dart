@@ -7,11 +7,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:zemoga_mobile_test/counter/counter.dart';
-import 'package:zemoga_mobile_test/l10n/l10n.dart';
+import 'package:zemoga_mobile_test/app/l10n/l10n.dart';
+
+import 'package:zemoga_mobile_test/presentation/routes/routes.dart';
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  App({Key? key}) : super(key: key);
+  final _navigator = GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +26,14 @@ class App extends StatelessWidget {
       ),
       localizationsDelegates: const [
         AppLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const CounterPage(),
+      navigatorKey: _navigator,
+      initialRoute: AppRoutes.initialRoute,
+      onGenerateRoute: AppRoutes.onGenerateRoute,
     );
   }
 }

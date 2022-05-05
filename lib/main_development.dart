@@ -9,5 +9,5 @@ import 'package:zemoga_mobile_test/app/app.dart';
 import 'package:zemoga_mobile_test/bootstrap.dart';
 
 void main() {
-  bootstrap(() => const App());
+  bootstrap(App.new);
 }

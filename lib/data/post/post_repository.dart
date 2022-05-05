@@ -6,10 +6,12 @@ import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zemoga_mobile_test/data/post/post_model.dart';
+import 'package:zemoga_mobile_test/data/user/user_model.dart';
 import 'package:zemoga_mobile_test/domain/comment/comment.dart';
 import 'package:zemoga_mobile_test/domain/core/failure.dart';
 import 'package:zemoga_mobile_test/domain/post/i_post_repository.dart';
 import 'package:zemoga_mobile_test/domain/post/post.dart';
+import 'package:zemoga_mobile_test/domain/user/user.dart';
 
 @LazySingleton(as: IPostRepository)
 class PostRepository implements IPostRepository {
@@ -65,6 +67,17 @@ class PostRepository implements IPostRepository {
     favorites.add(postId.toString());
     await prefs.setStringList(localKey, favorites);
     return unit;
+  }
+
+  @override
+  Future<Either<Failure, User>> getUser(int id) async {
+    try {
+      final response = await _dio.get('/users/$id');
+      return right(UserModel.fromJson(response.data as Map<String, dynamic>));
+    } catch (e) {
+      _logger.e(e);
+      return left(const Failure.serverError());
+    }
   }
 }
 

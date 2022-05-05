@@ -1,0 +1,22 @@
+{
+    "postsTitle": "Articulos",
+    "@counterAppBarTitle": {
+        "description": "List of posts"
+    },
+    "postTitle": "Articulo",
+    "@postTitle": {
+        "description": "Post"
+    },
+    "postSubTitle1": "Descripción",
+    "@postSubTitle1": {
+        "description": "Description"
+    },
+    "postSubTitle2": "Usuario",
+    "@postSubTitle2": {
+        "description": "User"
+    },
+    "postSubTitle3": "Comentarios",
+    "@postSubTitle3": {
+        "description": "Comments"
+    }
+}

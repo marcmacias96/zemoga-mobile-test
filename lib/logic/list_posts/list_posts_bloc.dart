@@ -2,16 +2,16 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:zemoga_mobile_test/domain/post/i_post_repository.dart';
 
-import '../../domain/comment/comment.dart';
-import '../../domain/post/post.dart';
-import '../../domain/user/user.dart';
+import 'package:zemoga_mobile_test/domain/post/post.dart';
 
 part 'list_posts_state.dart';
 part 'list_posts_event.dart';
 part 'list_posts_bloc.freezed.dart';
 
+@injectable
 class ListPostsBloc extends Bloc<ListPostsEvent, ListPostsState> {
   ListPostsBloc(this._postRepository) : super(const ListPostsState.initial()) {
     on<GetPosts>(_getPostData);
@@ -20,7 +20,9 @@ class ListPostsBloc extends Bloc<ListPostsEvent, ListPostsState> {
   final IPostRepository _postRepository;
 
   FutureOr<void> _getPostData(
-      GetPosts event, Emitter<ListPostsState> emit) async {
+    GetPosts event,
+    Emitter<ListPostsState> emit,
+  ) async {
     emit(const ListPostsState.loadInProgress());
     final failureOrPosts = await _postRepository.getPosts();
     emit(

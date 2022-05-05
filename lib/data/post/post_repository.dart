@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:zemoga_mobile_test/data/comment/comment_model.dart';
 import 'package:zemoga_mobile_test/data/post/post_model.dart';
 import 'package:zemoga_mobile_test/data/user/user_model.dart';
 import 'package:zemoga_mobile_test/domain/comment/comment.dart';
@@ -24,7 +25,13 @@ class PostRepository implements IPostRepository {
   Future<Either<Failure, List<Comment>>> getCommentsByPostId(int postId) async {
     try {
       final response = await _dio.get('/posts/$postId/comments');
-      return right(List.from(response.data as List));
+      return right(
+        List.from(
+          (response.data as List).map(
+            (e) => CommentModel.fromJson(e as Map<String, dynamic>),
+          ),
+        ),
+      );
     } catch (e) {
       _logger.e(e);
       return left(const Failure.serverError());
@@ -53,7 +60,12 @@ class PostRepository implements IPostRepository {
   Future<Either<Failure, List<Post>>> getPosts() async {
     try {
       final response = await _dio.get('/posts');
-      return right(List.from(response.data as List));
+      return right(
+        List.from(
+          (response.data as List)
+              .map((e) => PostModel.fromJson(e as Map<String, dynamic>)),
+        ),
+      );
     } catch (e) {
       _logger.e(e);
       return left(const Failure.serverError());

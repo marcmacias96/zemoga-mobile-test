@@ -11,7 +11,9 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hive/hive.dart';
+import 'package:injectable/injectable.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:zemoga_mobile_test/app/inyection.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
@@ -29,6 +31,7 @@ class AppBlocObserver extends BlocObserver {
 
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
+  configureInjection(Environment.prod);
   Hive.init((await getApplicationDocumentsDirectory()).path);
   await Hive.openBox('favorites');
 

@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:zemoga_mobile_test/domain/post/post.dart';
+import 'package:zemoga_mobile_test/presentation/post/post_page.dart';
 import 'package:zemoga_mobile_test/presentation/post/posts_page.dart';
 import 'package:zemoga_mobile_test/presentation/routes/route_name.dart';
 import 'package:zemoga_mobile_test/presentation/routes/slide_page_route.dart';
@@ -15,6 +17,10 @@ class AppRoutes {
     switch (settings.name) {
       case RouteName.initialRoute:
         return const PostsPage();
+      case RouteName.postDetails:
+        return PostPage(
+          post: settings.arguments! as Post,
+        );
       default:
         return const PostsPage();
     }

@@ -15,182 +15,6 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$PostState {
-  Post? get post => throw _privateConstructorUsedError;
-  bool get isLoading => throw _privateConstructorUsedError;
-  User? get user => throw _privateConstructorUsedError;
-  List<Comment>? get comments => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $PostStateCopyWith<PostState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $PostStateCopyWith<$Res> {
-  factory $PostStateCopyWith(PostState value, $Res Function(PostState) then) =
-      _$PostStateCopyWithImpl<$Res>;
-  $Res call({Post? post, bool isLoading, User? user, List<Comment>? comments});
-}
-
-/// @nodoc
-class _$PostStateCopyWithImpl<$Res> implements $PostStateCopyWith<$Res> {
-  _$PostStateCopyWithImpl(this._value, this._then);
-
-  final PostState _value;
-  // ignore: unused_field
-  final $Res Function(PostState) _then;
-
-  @override
-  $Res call({
-    Object? post = freezed,
-    Object? isLoading = freezed,
-    Object? user = freezed,
-    Object? comments = freezed,
-  }) {
-    return _then(_value.copyWith(
-      post: post == freezed
-          ? _value.post
-          : post // ignore: cast_nullable_to_non_nullable
-              as Post?,
-      isLoading: isLoading == freezed
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
-      comments: comments == freezed
-          ? _value.comments
-          : comments // ignore: cast_nullable_to_non_nullable
-              as List<Comment>?,
-    ));
-  }
-}
-
-/// @nodoc
-abstract class _$InitialCopyWith<$Res> implements $PostStateCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
-  @override
-  $Res call({Post? post, bool isLoading, User? user, List<Comment>? comments});
-}
-
-/// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$PostStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
-
-  @override
-  _Initial get _value => super._value as _Initial;
-
-  @override
-  $Res call({
-    Object? post = freezed,
-    Object? isLoading = freezed,
-    Object? user = freezed,
-    Object? comments = freezed,
-  }) {
-    return _then(_Initial(
-      post: post == freezed
-          ? _value.post
-          : post // ignore: cast_nullable_to_non_nullable
-              as Post?,
-      isLoading: isLoading == freezed
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
-      comments: comments == freezed
-          ? _value.comments
-          : comments // ignore: cast_nullable_to_non_nullable
-              as List<Comment>?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_Initial implements _Initial {
-  const _$_Initial(
-      {this.post,
-      required this.isLoading,
-      this.user,
-      final List<Comment>? comments})
-      : _comments = comments;
-
-  @override
-  final Post? post;
-  @override
-  final bool isLoading;
-  @override
-  final User? user;
-  final List<Comment>? _comments;
-  @override
-  List<Comment>? get comments {
-    final value = _comments;
-    if (value == null) return null;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  String toString() {
-    return 'PostState(post: $post, isLoading: $isLoading, user: $user, comments: $comments)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _Initial &&
-            const DeepCollectionEquality().equals(other.post, post) &&
-            const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
-            const DeepCollectionEquality().equals(other.user, user) &&
-            const DeepCollectionEquality().equals(other.comments, comments));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(post),
-      const DeepCollectionEquality().hash(isLoading),
-      const DeepCollectionEquality().hash(user),
-      const DeepCollectionEquality().hash(comments));
-
-  @JsonKey(ignore: true)
-  @override
-  _$InitialCopyWith<_Initial> get copyWith =>
-      __$InitialCopyWithImpl<_Initial>(this, _$identity);
-}
-
-abstract class _Initial implements PostState {
-  const factory _Initial(
-      {final Post? post,
-      required final bool isLoading,
-      final User? user,
-      final List<Comment>? comments}) = _$_Initial;
-
-  @override
-  Post? get post => throw _privateConstructorUsedError;
-  @override
-  bool get isLoading => throw _privateConstructorUsedError;
-  @override
-  User? get user => throw _privateConstructorUsedError;
-  @override
-  List<Comment>? get comments => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$InitialCopyWith<_Initial> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
 mixin _$PostEvent {
   Post get post => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -386,5 +210,181 @@ abstract class GetPostData implements PostEvent {
   @override
   @JsonKey(ignore: true)
   $GetPostDataCopyWith<GetPostData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$PostState {
+  Post? get post => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
+  User? get user => throw _privateConstructorUsedError;
+  List<Comment>? get comments => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $PostStateCopyWith<PostState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PostStateCopyWith<$Res> {
+  factory $PostStateCopyWith(PostState value, $Res Function(PostState) then) =
+      _$PostStateCopyWithImpl<$Res>;
+  $Res call({Post? post, bool isLoading, User? user, List<Comment>? comments});
+}
+
+/// @nodoc
+class _$PostStateCopyWithImpl<$Res> implements $PostStateCopyWith<$Res> {
+  _$PostStateCopyWithImpl(this._value, this._then);
+
+  final PostState _value;
+  // ignore: unused_field
+  final $Res Function(PostState) _then;
+
+  @override
+  $Res call({
+    Object? post = freezed,
+    Object? isLoading = freezed,
+    Object? user = freezed,
+    Object? comments = freezed,
+  }) {
+    return _then(_value.copyWith(
+      post: post == freezed
+          ? _value.post
+          : post // ignore: cast_nullable_to_non_nullable
+              as Post?,
+      isLoading: isLoading == freezed
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
+      comments: comments == freezed
+          ? _value.comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as List<Comment>?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$InitialCopyWith<$Res> implements $PostStateCopyWith<$Res> {
+  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
+      __$InitialCopyWithImpl<$Res>;
+  @override
+  $Res call({Post? post, bool isLoading, User? user, List<Comment>? comments});
+}
+
+/// @nodoc
+class __$InitialCopyWithImpl<$Res> extends _$PostStateCopyWithImpl<$Res>
+    implements _$InitialCopyWith<$Res> {
+  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
+      : super(_value, (v) => _then(v as _Initial));
+
+  @override
+  _Initial get _value => super._value as _Initial;
+
+  @override
+  $Res call({
+    Object? post = freezed,
+    Object? isLoading = freezed,
+    Object? user = freezed,
+    Object? comments = freezed,
+  }) {
+    return _then(_Initial(
+      post: post == freezed
+          ? _value.post
+          : post // ignore: cast_nullable_to_non_nullable
+              as Post?,
+      isLoading: isLoading == freezed
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
+      comments: comments == freezed
+          ? _value.comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as List<Comment>?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Initial implements _Initial {
+  const _$_Initial(
+      {this.post,
+      required this.isLoading,
+      this.user,
+      final List<Comment>? comments})
+      : _comments = comments;
+
+  @override
+  final Post? post;
+  @override
+  final bool isLoading;
+  @override
+  final User? user;
+  final List<Comment>? _comments;
+  @override
+  List<Comment>? get comments {
+    final value = _comments;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString() {
+    return 'PostState(post: $post, isLoading: $isLoading, user: $user, comments: $comments)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _Initial &&
+            const DeepCollectionEquality().equals(other.post, post) &&
+            const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
+            const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality().equals(other.comments, comments));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(post),
+      const DeepCollectionEquality().hash(isLoading),
+      const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(comments));
+
+  @JsonKey(ignore: true)
+  @override
+  _$InitialCopyWith<_Initial> get copyWith =>
+      __$InitialCopyWithImpl<_Initial>(this, _$identity);
+}
+
+abstract class _Initial implements PostState {
+  const factory _Initial(
+      {final Post? post,
+      required final bool isLoading,
+      final User? user,
+      final List<Comment>? comments}) = _$_Initial;
+
+  @override
+  Post? get post => throw _privateConstructorUsedError;
+  @override
+  bool get isLoading => throw _privateConstructorUsedError;
+  @override
+  User? get user => throw _privateConstructorUsedError;
+  @override
+  List<Comment>? get comments => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$InitialCopyWith<_Initial> get copyWith =>
       throw _privateConstructorUsedError;
 }
